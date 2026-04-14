@@ -1,6 +1,7 @@
 'use client';
 
 import Lenis from '@studio-freight/lenis';
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
 type TocItem = {
@@ -11,15 +12,14 @@ type TocItem = {
 
 const tocItems: TocItem[] = [
   { id: 'introduction', label: 'Introduction', timestamp: '00:00' },
-  { id: 'how-the-scam-works', label: 'How the Scam Works', timestamp: '02:12' },
-  { id: 'deposit-trap', label: 'The Deposit Trap', timestamp: '04:08' },
-  { id: 'accounts-compromised', label: 'How Accounts Get Compromised', timestamp: '05:47' },
-  { id: 'final-thoughts', label: 'Final Thoughts', timestamp: '08:10' },
+  { id: 'how-the-scam-works', label: 'How the Scam Works', timestamp: '02:10' },
+  { id: 'deposit-trap', label: 'The Deposit Trap', timestamp: '03:55' },
+  { id: 'accounts-compromised', label: 'How Accounts Get Compromised', timestamp: '05:32' },
+  { id: 'final-thoughts', label: 'Final Thoughts', timestamp: '08:05' },
 ];
 
 export default function BlogArticle() {
   const [activeId, setActiveId] = useState<string>(tocItems[0].id);
-
   const sectionIds = useMemo(() => tocItems.map((item) => item.id), []);
 
   useEffect(() => {
@@ -30,33 +30,23 @@ export default function BlogArticle() {
     });
 
     let rafId = 0;
-
     const raf = (time: number) => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
-
     rafId = requestAnimationFrame(raf);
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible[0]) {
-          setActiveId(visible[0].target.id);
-        }
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveId(visible[0].target.id);
       },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.45, 0.7],
-      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0.2, 0.45, 0.7] },
     );
 
     sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
     });
 
     const handleAnchorClick = (event: MouseEvent) => {
@@ -84,124 +74,117 @@ export default function BlogArticle() {
   }, [sectionIds]);
 
   return (
-    <article className="bg-white px-6 pb-24 pt-28 sm:pt-32">
-      <div className="mx-auto grid w-full max-w-[1100px] gap-12 lg:grid-cols-[minmax(0,680px)_minmax(220px,1fr)]">
-        <div>
-          <header className="mb-14 border-b border-black/10 pb-10">
-            <h1 className="font-[family-name:var(--font-stix)] text-[clamp(2rem,4.8vw,3.6rem)] font-normal leading-[1.08] tracking-[-0.02em] text-black/95">
-              The Massive MrBeast Casino Scam Exposed
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/65 sm:text-lg">
-              A deep dive into how fake platforms exploit trust and scale.
-            </p>
-            <p className="mt-4 text-sm text-black/45">April 2026 • 8 min read</p>
-          </header>
+    <article className="bg-white px-4 pb-16 pt-24 sm:pt-28">
+      <div className="mx-auto w-full max-w-[1100px]">
+        <Link
+          href="/blogs"
+          className="inline-flex items-center gap-2 rounded-lg border border-black/15 px-3.5 py-2 text-sm font-medium text-black/75 transition-colors hover:bg-black/[0.03]"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          go back
+        </Link>
 
-          <div className="space-y-14 text-black/75">
-            <section id="introduction" className="scroll-mt-28">
-              <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
-                Introduction
-              </h2>
-              <p className="mt-5 max-w-[680px] text-base leading-8">
-                The internet is rife with scams that borrow the trust of popular creators to make fake offers look
-                legitimate. One of the most widespread versions uses MrBeast branding and fabricated casino bonuses to
-                pressure people into risky deposits. These campaigns move fast through Discord, YouTube, Instagram, and
-                TikTok, especially through compromised accounts.
+        <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,680px)_minmax(220px,1fr)]">
+          <div>
+            <header className="mb-14 border-b border-black/10 pb-10">
+              <h1 className="font-[family-name:var(--font-stix)] text-[clamp(2rem,4.8vw,3.6rem)] font-normal leading-[1.08] tracking-[-0.02em] text-black/95">
+                The Massive MrBeast Casino Scam Exposed
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/65 sm:text-lg">
+                A deep dive into how fake platforms exploit trust and scale.
               </p>
-            </section>
+              <p className="mt-4 text-sm text-black/45">April 2026 • 8 min read</p>
+            </header>
 
-            <div className="flex h-52 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">
-              Image Placeholder
-            </div>
+            <div className="space-y-14 text-black/75">
+              <section id="introduction" className="scroll-mt-28">
+                <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">Introduction</h2>
+                <p className="mt-5 max-w-[680px] text-base leading-8">
+                  The internet is rife with scams that leverage popular culture and well-known personalities to lure victims. One of the
+                  most alarming examples uses fake casino websites impersonating MrBeast and similar creators with promises of instant bonuses.
+                  These campaigns spread fast through Discord, YouTube, Instagram, and TikTok, often through already compromised accounts.
+                </p>
+              </section>
 
-            <section id="how-the-scam-works" className="scroll-mt-28">
-              <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
-                How the Scam Works
-              </h2>
-              <p className="mt-5 max-w-[680px] text-base leading-8">
-                Fake casino pages promise oversized sign-up rewards and simulate account balances to create urgency.
-                Victims are told they can unlock withdrawals after a quick verification step, but every action leads to
-                another payment gate, another fake support response, and more pressure to continue.
-              </p>
-            </section>
+              <div className="flex h-52 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">Image Placeholder</div>
 
-            <div className="flex h-64 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">
-              Image Placeholder
-            </div>
+              <section id="how-the-scam-works" className="scroll-mt-28">
+                <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">How the Scam Works</h2>
+                <p className="mt-5 max-w-[680px] text-base leading-8">
+                  At face value, the scam appears as a legitimate casino offer with a fake $2,500 sign-up bonus and celebrity endorsement.
+                  Victims receive DMs with links and are told they can withdraw funds after a small verification payment. In reality, this
+                  is the beginning of a loop where each step introduces another fabricated payment requirement.
+                </p>
+              </section>
 
-            <section id="deposit-trap" className="scroll-mt-28">
-              <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
-                The Deposit Trap
-              </h2>
-              <p className="mt-5 max-w-[680px] text-base leading-8">
-                Deposits usually begin with a small amount, then escalate through staged milestones such as verification,
-                tax, or tier upgrades. The interface is designed to feel trustworthy while delaying withdrawals. By the
-                time users realize it is fraudulent, the total loss can be severe.
-              </p>
-            </section>
+              <div className="flex h-64 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">Image Placeholder</div>
 
-            <div className="flex h-44 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">
-              Image Placeholder
-            </div>
+              <section id="deposit-trap" className="scroll-mt-28">
+                <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">The Deposit Trap</h2>
+                <p className="mt-5 max-w-[680px] text-base leading-8">
+                  Deposits typically start small, then escalate: verification fees, VIP upgrades, withdrawal taxes, and compliance checks.
+                  Withdrawal attempts trigger fake errors around AML rules or untrusted IP claims, then push users toward “live support” bots
+                  designed to persuade additional deposits. Victims can lose hundreds or thousands before realizing the fraud.
+                </p>
+              </section>
 
-            <section id="accounts-compromised" className="scroll-mt-28">
-              <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
-                How Accounts Get Compromised
-              </h2>
-              <p className="mt-5 max-w-[680px] text-base leading-8">
-                Many scam links spread from stolen social accounts. Info-stealer malware can capture passwords, cookies,
-                and session tokens from infected devices, allowing attackers to reuse trusted channels. Even when 2FA is
-                enabled, token theft and session hijacking can still bypass protections.
-              </p>
-            </section>
+              <div className="flex h-44 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">Image Placeholder</div>
 
-            <div className="flex h-56 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">
-              Image Placeholder
-            </div>
+              <section id="accounts-compromised" className="scroll-mt-28">
+                <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
+                  How Accounts Get Compromised
+                </h2>
+                <p className="mt-5 max-w-[680px] text-base leading-8">
+                  Scammers rely on malware and info stealers distributed through cheats, pirated apps, and suspicious downloads. These tools
+                  can steal passwords, cookies, and active sessions. Even with 2FA enabled, stolen session tokens may allow unauthorized
+                  access, which explains why compromised accounts can continue spreading scam links at scale.
+                </p>
+              </section>
 
-            <section id="final-thoughts" className="scroll-mt-28">
-              <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">
-                Final Thoughts
-              </h2>
-              <p className="mt-5 max-w-[680px] text-base leading-8">
-                This type of fraud succeeds by combining social trust, fast distribution, and emotional urgency. Treat
-                giveaway-style deposits as high risk, verify domains carefully, and reset compromised systems
-                immediately. In scams like this, speed of response often determines the size of the loss.
-              </p>
-            </section>
+              <div className="flex h-56 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">Image Placeholder</div>
 
-            <div className="flex h-48 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">
-              Image Placeholder
+              <section id="final-thoughts" className="scroll-mt-28">
+                <h2 className="font-[family-name:var(--font-stix)] text-3xl font-normal tracking-[-0.01em] text-black/95">Final Thoughts</h2>
+                <p className="mt-5 max-w-[680px] text-base leading-8">
+                  This scam highlights how cybercrime now operates as a scalable system: stolen accounts drive distribution, fake interfaces
+                  build trust, and social pressure converts victims. The best defense is disciplined caution: verify links, avoid suspicious
+                  downloads, reset compromised systems quickly, change credentials from a clean device, and report fake domains immediately.
+                </p>
+              </section>
+
+              <div className="flex h-48 items-center justify-center rounded-2xl bg-black/[0.04] text-sm tracking-wide text-black/35">Image Placeholder</div>
             </div>
           </div>
+
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 rounded-xl border border-black/10 px-5 py-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Timestamps</p>
+              <nav className="mt-4" aria-label="Blog table of contents">
+                <ul className="space-y-2">
+                  {tocItems.map((item) => {
+                    const isActive = activeId === item.id;
+                    return (
+                      <li key={item.id}>
+                        <a
+                          data-blog-toc-link="true"
+                          href={`#${item.id}`}
+                          className={`flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm transition-colors ${
+                            isActive ? 'bg-black/5 text-black' : 'text-black/55 hover:text-black/75'
+                          }`}
+                        >
+                          <span>{item.label}</span>
+                          <span className="text-[11px] tabular-nums text-black/45">{item.timestamp}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </div>
+          </aside>
         </div>
-
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 rounded-xl border border-black/10 px-5 py-5">
-            <p className="text-xs uppercase tracking-[0.12em] text-black/45">Timestamps</p>
-            <nav className="mt-4" aria-label="Blog table of contents">
-              <ul className="space-y-2">
-                {tocItems.map((item) => {
-                  const isActive = activeId === item.id;
-                  return (
-                    <li key={item.id}>
-                      <a
-                        data-blog-toc-link="true"
-                        href={`#${item.id}`}
-                        className={`flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm transition-colors ${
-                          isActive ? 'bg-black/5 text-black' : 'text-black/55 hover:text-black/75'
-                        }`}
-                      >
-                        <span>{item.label}</span>
-                        <span className="text-[11px] tabular-nums text-black/45">{item.timestamp}</span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-        </aside>
       </div>
     </article>
   );
