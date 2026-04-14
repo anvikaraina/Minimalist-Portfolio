@@ -86,7 +86,7 @@ export default function BlogArticle() {
           go back
         </Link>
 
-        <div className="mx-auto mt-8 flex w-full max-w-[980px] gap-10 px-4 sm:px-6">
+        <div className="mt-8 flex w-full gap-10">
           <div className="min-w-0 max-w-[700px] flex-1">
             <header className="mb-14 border-b border-black/10 pb-10">
               <h1 className="font-[family-name:var(--font-stix)] text-[clamp(2rem,4.8vw,3.6rem)] font-normal leading-[1.08] tracking-[-0.02em] text-black/95">
