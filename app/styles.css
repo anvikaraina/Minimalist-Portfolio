@@ -35,7 +35,7 @@ a {
 }
 
 .navbar-wrap {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -91,9 +91,9 @@ a {
 
 .hero {
   position: relative;
-  margin-top: 4rem;
-  padding: 6rem 1rem;
-  border-radius: 1rem;
+  margin-top: 3.2rem;
+  padding: 5.5rem 0;
+  border-radius: 0;
   overflow: hidden;
   isolation: isolate;
 }
@@ -707,5 +707,17 @@ a {
 
   .project-main p {
     max-width: none;
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
