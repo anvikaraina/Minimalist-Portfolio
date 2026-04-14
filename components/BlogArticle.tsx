@@ -74,8 +74,8 @@ export default function BlogArticle() {
   }, [sectionIds]);
 
   return (
-    <article className="bg-white px-4 pb-16 pt-24 sm:pt-28">
-      <div className="mx-auto w-full max-w-[1100px]">
+    <article className="bg-white pb-16 pt-24 sm:pt-28">
+      <div className="w-full">
         <Link
           href="/blogs"
           className="inline-flex items-center gap-2 rounded-lg border border-black/15 px-3.5 py-2 text-sm font-medium text-black/75 transition-colors hover:bg-black/[0.03]"
@@ -86,8 +86,8 @@ export default function BlogArticle() {
           go back
         </Link>
 
-        <div className="mt-8 grid gap-16 lg:grid-cols-[minmax(0,700px)_minmax(170px,220px)]">
-          <div>
+        <div className="mx-auto mt-8 flex w-full max-w-[980px] gap-10 px-4 sm:px-6">
+          <div className="min-w-0 max-w-[700px] flex-1">
             <header className="mb-14 border-b border-black/10 pb-10">
               <h1 className="font-[family-name:var(--font-stix)] text-[clamp(2rem,4.8vw,3.6rem)] font-normal leading-[1.08] tracking-[-0.02em] text-black/95">
                 The Massive MrBeast Casino Scam Exposed
@@ -158,7 +158,7 @@ export default function BlogArticle() {
             </div>
           </div>
 
-          <aside className="hidden lg:block">
+          <aside className="hidden xl:block w-[180px] shrink-0">
             <div className="sticky top-24 ml-4 pl-2">
               <p className="text-xs uppercase tracking-[0.12em] text-black/45">Timestamps</p>
               <nav className="mt-4" aria-label="Blog table of contents">
