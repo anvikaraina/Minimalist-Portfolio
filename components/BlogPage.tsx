@@ -5,25 +5,9 @@ const posts: BlogPost[] = [
     title: 'The Massive MrBeast Casino Scam Exposed',
     description:
       'A deep dive into how fake platforms exploit trust at scale, how accounts get compromised, and what practical steps actually protect users.',
-    date: 'April 2026',
+    date: 'November 2, 2025',
     tags: ['Cybersecurity', 'Scam Analysis', 'Awareness'],
     href: '/blogs/massive-mr-beast-casino-scam-exposed',
-  },
-  {
-    title: 'How Interface Trust Gets Weaponized',
-    description:
-      'A breakdown of high-conversion scam UX patterns and why familiar visuals can override user caution in critical moments.',
-    date: 'March 2026',
-    tags: ['UX', 'Trust', 'Security'],
-    href: '/blogs/interface-trust-weaponized',
-  },
-  {
-    title: 'Cookie Theft and Session Hijacking Basics',
-    description:
-      'A practical primer on token abuse, compromised sessions, and lightweight hardening methods that reduce account takeover risk.',
-    date: 'February 2026',
-    tags: ['Web Security', 'Sessions', 'Auth'],
-    href: '/blogs/cookie-theft-basics',
   },
 ];
 

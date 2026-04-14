@@ -95,7 +95,7 @@ export default function BlogArticle() {
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/65 sm:text-lg">
                 A deep dive into how fake platforms exploit trust and scale.
               </p>
-              <p className="mt-4 text-sm text-black/45">April 2026 • 8 min read</p>
+              <p className="mt-4 text-sm text-black/45">November 2, 2025 • 8 min read</p>
             </header>
 
             <div className="space-y-14 text-black/75">
