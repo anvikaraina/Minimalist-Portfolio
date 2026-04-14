@@ -74,7 +74,7 @@ export default function BlogArticle() {
   }, [sectionIds]);
 
   return (
-    <article className="bg-white pb-16 pt-24 sm:pt-28">
+    <article className="pb-16 pt-24 sm:pt-28">
       <div className="w-full">
         <Link
           href="/blogs"
