@@ -14,8 +14,8 @@ const posts: BlogPost[] = [
 export default function BlogPage() {
   return (
     <section className="mx-auto w-full max-w-[880px] px-4 pb-16 pt-24 sm:pt-28">
-      <header className="mb-10">
-        <h1 className="text-[clamp(2.6rem,6vw,4.1rem)] font-bold tracking-[-0.02em] text-black">Blog</h1>
+      <header className="mb-10 text-center">
+        <h1 className="font-[family-name:var(--font-stix)] text-[clamp(2.6rem,6vw,4.1rem)] font-normal tracking-[-0.02em] text-black">Blog</h1>
       </header>
 
       <div className="space-y-5">
