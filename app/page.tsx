@@ -1,5 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import TimelineSection from '@/components/TimelineSection';
+import ContactFooterSection from '@/components/ContactFooterSection';
 
 export default function HomePage() {
   return (
@@ -7,6 +9,8 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <TimelineSection />
+        <ContactFooterSection />
       </main>
     </div>
   );
