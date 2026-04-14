@@ -1,12 +1,12 @@
 import Navbar from '@/components/Navbar';
-import ProjectsArchive from '@/components/ProjectsArchive';
+import Hero from '@/components/Hero';
 
 export default function HomePage() {
   return (
     <div className="page-shell">
       <Navbar />
       <main>
-        <ProjectsArchive />
+        <Hero />
       </main>
     </div>
   );
